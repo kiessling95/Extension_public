@@ -17,20 +17,9 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
-    /*public $css = [
-        'css/site.css',
-    ];
-    public $js = [
-    ];
-    public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
-    ];*/
     public $sourcePath = '@bower/';
-    public $css = ['admin-lte/css/AdminLTE.css'];
-    public $js = ['admin-lte/js/AdminLTE/app.js'];
+    public $css = ['admin-lte/dist/css/AdminLTE.css'];
+    public $js = ['admin-lte/dist/js/app.js'];
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
