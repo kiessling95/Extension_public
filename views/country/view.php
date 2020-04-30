@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Pextension */
 
 $this->title = $model->id_pext;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Poryectos de Extensión'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Pextensions'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>

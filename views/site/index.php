@@ -1,8 +1,11 @@
 <?php
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
+/* @var $pextension app\models\Pextension */
 
-$this->title = 'My Yii Application';
+
+$this->title = Yii::t('app', 'Pextension');
 ?>
 <div class="site-index">
 
@@ -13,12 +16,28 @@ $this->title = 'My Yii Application';
 
         <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
     </div>
+      <div class="container-fluid">
+      <?= GridView::widget([
+        'dataProvider' => $pextension,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id_pext',
+            'denominacion',
+            'uni_acad',
+            'fec_desde',
+            'fec_hasta',
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+   </div>
 
     <div class="body-content">
 
         <div class="row">
             <div class="col-lg-4">
-                <h2>Heading</h2>
+                <h2><span class="glyphicon glyphicon-user"></span><?= 'Prueba' ?><br/> Denominación</h2>
+  
 
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
                     dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip

@@ -7,8 +7,11 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
+
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Pextension;
 
 class SiteController extends Controller
 {
@@ -61,7 +64,18 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $busqueda = Yii::$app->request->queryParams;
+        
+        
+        $searchModel = new \app\models\PextensionSearch();
+        //$pextension = $searchModel->s
+        $dataProvider = new ActiveDataProvider([
+            'query' => Pextension::find(),
+        ]);
+        
+        return $this->render('index', [
+                'pextension' => $dataProvider,
+            ]);
     }
 
     /**
