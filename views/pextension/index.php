@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
+//use kartik\grid\GridView;
+
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
@@ -14,12 +16,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
 
-    <?= GridView::widget([
+    <?=
+    GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
+            
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id_pext',
+            //['class' => 'yii\grid\CheckboxColumn'],
+            //id_pext',
             'denominacion',
             'uni_acad',
             'fec_desde',
@@ -28,7 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
             //'duracion',
             //'palabras_clave',
             //'objetivo',
-            //'id_estado',
+            //'id_estado' =>
+            [
+               'attribute' => 'id_estado',
+               'value' => 'estado.descripcion'
+           ],
             //'financiacion:boolean',
             //'monto',
             //'descripcion_situacion',
@@ -43,11 +51,29 @@ $this->params['breadcrumbs'][] = $this->title;
             //'impacto',
             //'eje_tematico',
             //'ord_priori',
-            //'fec_carga',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            'fec_carga',
+            ['class' => 'yii\grid\ActionColumn',
+                'buttons' => [
+                    'update' =>  function($url,$model) {
+                        return Html::a('<i class="fas fa-edit"></i>', $url, [
+                            'title' => Yii::t('app', 'update')
+                        ]);
+                    },
+                    'view' =>  function($url,$model) {
+                        return Html::a('<i class="fas fa-eye"></i>', $url, [
+                            'title' => Yii::t('app', 'view')
+                        ]);
+                    },
+                    'delete' => function($url,$model) {
+                        return Html::a('<i class="fas fa-trash"></i>', $url, [
+                            'title' => Yii::t('app', 'delete')
+                        ]);
+                    }
+                 ]
+            ],
         ],
-    ]); ?>
+    ]);
+    ?>
 
 
 </div>
