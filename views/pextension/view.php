@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Pextension */
 
 $this->title = $model->id_pext;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Poryectos de Extensión'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Pextensions'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -17,16 +17,26 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id_pext], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id_pext], [
+        <?=
+        Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id_pext], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                 'method' => 'post',
             ],
-        ]) ?>
+        ])
+        ?>
     </p>
 
-    <?= DetailView::widget([
+    <?=
+    $this->render('menu', [
+        'model' => $model,
+    ])
+    ?>
+
+
+    <?=
+    DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id_pext',
@@ -51,10 +61,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'departamento',
             'area',
             'impacto',
-            'eje_tematico',
+            //'eje_tematico',
             'ord_priori',
             'fec_carga',
         ],
-    ]) ?>
+    ])
+    ?>
 
 </div>

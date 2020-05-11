@@ -3,27 +3,30 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
-//use kartik\grid\GridView;
-
 /* @var $this yii\web\View */
+/* @var $searchModel app\models\PextensionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Proyectos de Extensión');
+$this->title = Yii::t('app', 'Pextensions');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pextension-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <p>
+        <?= Html::a(Yii::t('app', 'Create Pextension'), ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
 
-    <?=
-    GridView::widget([
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
         'columns' => [
-            
             ['class' => 'yii\grid\SerialColumn'],
-            //['class' => 'yii\grid\CheckboxColumn'],
-            //id_pext',
+
+            'id_pext',
             'denominacion',
             'uni_acad',
             'fec_desde',
@@ -32,11 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'duracion',
             //'palabras_clave',
             //'objetivo',
-            //'id_estado' =>
-            [
-               'attribute' => 'id_estado',
-               'value' => 'estado.descripcion'
-           ],
+            //'id_estado',
             //'financiacion:boolean',
             //'monto',
             //'descripcion_situacion',
@@ -51,8 +50,9 @@ $this->params['breadcrumbs'][] = $this->title;
             //'impacto',
             //'eje_tematico',
             //'ord_priori',
-            'fec_carga',
-            ['class' => 'yii\grid\ActionColumn',
+            //'fec_carga',
+
+             ['class' => 'yii\grid\ActionColumn',
                 'buttons' => [
                     'update' =>  function($url,$model) {
                         return Html::a('<i class="fas fa-edit"></i>', $url, [
@@ -72,8 +72,7 @@ $this->params['breadcrumbs'][] = $this->title;
                  ]
             ],
         ],
-    ]);
-    ?>
+    ]); ?>
 
 
 </div>

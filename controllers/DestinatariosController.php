@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Destinatarios;
-use yii\data\ActiveDataProvider;
+use app\models\DestinatariosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -33,13 +33,15 @@ class DestinatariosController extends Controller
      * Lists all Destinatarios models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($id)
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Destinatarios::find(),
-        ]);
+        $searchModel = new DestinatariosSearch();
+        $searchModel->id_pext = $id;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }

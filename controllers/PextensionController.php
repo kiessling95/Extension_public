@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Pextension;
-use yii\data\ActiveDataProvider;
+use app\models\PextensionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,11 +35,11 @@ class PextensionController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Pextension::find(),
-        ]);
+        $searchModel = new PextensionSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
