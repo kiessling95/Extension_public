@@ -24,7 +24,7 @@ use yii\helpers\Html;
 }else{
     app\assets\AppAsset::register($this);
     
-    dmstr\web\AdminLteAsset::register($this);
+    dmstr\adminlte\web\AdminLteAsset::register($this);
 
     $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
     ?>
