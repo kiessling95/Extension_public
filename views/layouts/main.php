@@ -23,6 +23,8 @@ use yii\helpers\Html;
 
 }else{
     app\assets\AppAsset::register($this);
+
+    \dmstr\adminlte\web\AdminLteAsset::register($this);
     
     dmstr\adminlte\web\AdminLteAsset::register($this);
 

@@ -12,13 +12,12 @@ use yii\filters\VerbFilter;
 /**
  * IntegranteExternoPeController implements the CRUD actions for IntegranteExternoPe model.
  */
-class IntegranteExternoPeController extends Controller
-{
+class IntegranteExternoPeController extends Controller {
+
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -33,14 +32,20 @@ class IntegranteExternoPeController extends Controller
      * Lists all IntegranteExternoPe models.
      * @return mixed
      */
-    public function actionIndex()
-    {
+    public function actionIndex($id) {
         $searchModel = new IntegranteExternoPeSearch();
+        $searchModel->id_pext = $id;
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (($model = \app\models\Pextension::findOne($id)) == null) {
+            throw new NotFoundHttpException(Yii::t('app', 'El Proyecto no existe.'));
+        }
+
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+                    'model' => $model,
         ]);
     }
 
@@ -53,10 +58,9 @@ class IntegranteExternoPeController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($tipo_docum, $nro_docum, $id_pext, $desde)
-    {
+    public function actionView($tipo_docum, $nro_docum, $id_pext, $desde) {
         return $this->render('view', [
-            'model' => $this->findModel($tipo_docum, $nro_docum, $id_pext, $desde),
+                    'model' => $this->findModel($tipo_docum, $nro_docum, $id_pext, $desde),
         ]);
     }
 
@@ -65,8 +69,7 @@ class IntegranteExternoPeController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new IntegranteExternoPe();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -74,7 +77,7 @@ class IntegranteExternoPeController extends Controller
         }
 
         return $this->render('create', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -88,8 +91,7 @@ class IntegranteExternoPeController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($tipo_docum, $nro_docum, $id_pext, $desde)
-    {
+    public function actionUpdate($tipo_docum, $nro_docum, $id_pext, $desde) {
         $model = $this->findModel($tipo_docum, $nro_docum, $id_pext, $desde);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -97,7 +99,7 @@ class IntegranteExternoPeController extends Controller
         }
 
         return $this->render('update', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -111,8 +113,7 @@ class IntegranteExternoPeController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($tipo_docum, $nro_docum, $id_pext, $desde)
-    {
+    public function actionDelete($tipo_docum, $nro_docum, $id_pext, $desde) {
         $this->findModel($tipo_docum, $nro_docum, $id_pext, $desde)->delete();
 
         return $this->redirect(['index']);
@@ -128,12 +129,12 @@ class IntegranteExternoPeController extends Controller
      * @return IntegranteExternoPe the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($tipo_docum, $nro_docum, $id_pext, $desde)
-    {
+    protected function findModel($tipo_docum, $nro_docum, $id_pext, $desde) {
         if (($model = IntegranteExternoPe::findOne(['tipo_docum' => $tipo_docum, 'nro_docum' => $nro_docum, 'id_pext' => $id_pext, 'desde' => $desde])) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
+
 }

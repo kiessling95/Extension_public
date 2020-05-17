@@ -8,9 +8,10 @@ use yii\grid\GridView;
 $this->title = Yii::t('app', 'Novedades');
 ?>
 <div class="site-index">
-
+    
+    
     <div class="jumbotron">
-        <h1>ERROR pagina en desarrollo !!!</h1>
+        <h1>Pagina en desarrollo !!!</h1>
         <h2> "Proximamente actividades realizadas por los proyectos" </h2>
     </div>
  

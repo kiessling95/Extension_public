@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Organizaciones Parti
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="organizaciones-participantes-view">
+<div class="organizacionesParticipantes-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

@@ -19,6 +19,12 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    
+     <?=
+    $this->render('/pextension/menu', [
+        'model' => $model,
+    ])
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -28,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'tipo_docum',
             'nro_docum',
-            'id_pext',
+            //'id_pext',
             'funcion_p',
             'carga_horaria',
             //'desde',

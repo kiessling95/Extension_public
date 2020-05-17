@@ -12,6 +12,7 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
     ],
+    
     'language' => 'es-AR',
     'sourceLanguage' => 'es-AR',
     'components' => [
@@ -59,7 +60,7 @@ $config = [
         'view' => [
             'theme' => [
                 'pathMap' => [
-                    // '@app/views',
+                    //'@app/views' ,
                     '@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-app'
                 ],
             ],

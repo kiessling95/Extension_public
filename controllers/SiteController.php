@@ -63,8 +63,7 @@ class SiteController extends Controller {
         $busqueda = Yii::$app->request->queryParams;
 
         $auditoria = \app\models\PublicAuditoriaLogsPextension::find()->all();
-        //$auditoria = Yii::$app->db->createCommand(' SELECT * FROM public_auditoria.logs_pextension ')
-        //        ->queryAll();
+        
 
 
         $searchModel = new \app\models\PextensionSearch();

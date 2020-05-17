@@ -10,7 +10,7 @@ use yii\grid\GridView;
 $this->title = Yii::t('app', 'Organizaciones Participantes');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="organizaciones-participantes-index">
+<div class="organizacionesParticipantes-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -19,6 +19,12 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    
+     <?=
+    $this->render('/pextension/menu', [
+        'model' => $model,
+    ])
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

@@ -6,15 +6,15 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Pextension */
 
-$this->title = $model->id_pext;
+$this->title = $model->denominacion;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Pextensions'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="pextension-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
+    <!--<h1><?= Html::encode($this->title) ?></h1>
+<!--
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id_pext], ['class' => 'btn btn-primary']) ?>
         <?=
@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ])
         ?>
     </p>
-
+-->
     <?=
     $this->render('menu', [
         'model' => $model,
@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
     DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id_pext',
+            //'id_pext',
             'denominacion',
             'uni_acad',
             'fec_desde',
@@ -48,8 +48,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'duracion',
             'palabras_clave',
             'objetivo',
-            'id_estado',
-            'financiacion:boolean',
+            [
+                'attribute' => 'id_estado',
+                'value' => 'Estado.descripcion'
+            ],
+            //'financiacion:boolean',
             'monto',
             'descripcion_situacion',
             'caracterizacion_poblacion',

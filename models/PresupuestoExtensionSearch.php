@@ -1,15 +1,15 @@
 <?php
 
-namespace app;
+namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\PresupuestoExtension;
 
 /**
- * modelsPresupuestoExtensionSearch represents the model behind the search form of `app\models\PresupuestoExtension`.
+ * PresupuestoExtensionSearch represents the model behind the search form of `app\models\PresupuestoExtension`.
  */
-class modelsPresupuestoExtensionSearch extends PresupuestoExtension
+class PresupuestoExtensionSearch extends PresupuestoExtension
 {
     /**
      * {@inheritdoc}

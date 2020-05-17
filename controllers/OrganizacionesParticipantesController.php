@@ -12,13 +12,12 @@ use yii\filters\VerbFilter;
 /**
  * OrganizacionesParticipantesController implements the CRUD actions for OrganizacionesParticipantes model.
  */
-class OrganizacionesParticipantesController extends Controller
-{
+class OrganizacionesParticipantesController extends Controller {
+
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -33,14 +32,19 @@ class OrganizacionesParticipantesController extends Controller
      * Lists all OrganizacionesParticipantes models.
      * @return mixed
      */
-    public function actionIndex()
-    {
+    public function actionIndex($id) {
         $searchModel = new OrganizacionesParticipantesSearch();
+        $searchModel->id_pext = 333;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (($model = \app\models\Pextension::findOne($id)) == null) {
+            throw new NotFoundHttpException(Yii::t('app', 'El Proyecto no existe.'));
+        }
+
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+                    'model' => $model,
         ]);
     }
 
@@ -50,10 +54,9 @@ class OrganizacionesParticipantesController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
-    {
+    public function actionView($id) {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+                    'model' => $this->findModel($id),
         ]);
     }
 
@@ -62,8 +65,7 @@ class OrganizacionesParticipantesController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new OrganizacionesParticipantes();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -71,7 +73,7 @@ class OrganizacionesParticipantesController extends Controller
         }
 
         return $this->render('create', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -82,8 +84,7 @@ class OrganizacionesParticipantesController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -91,7 +92,7 @@ class OrganizacionesParticipantesController extends Controller
         }
 
         return $this->render('update', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -102,8 +103,7 @@ class OrganizacionesParticipantesController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
-    {
+    public function actionDelete($id) {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -116,12 +116,12 @@ class OrganizacionesParticipantesController extends Controller
      * @return OrganizacionesParticipantes the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
-    {
+    protected function findModel($id) {
         if (($model = OrganizacionesParticipantes::findOne($id)) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
+
 }
